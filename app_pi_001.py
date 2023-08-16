@@ -291,7 +291,7 @@ elif selected_option == "Proofreading":
 
 
 elif selected_option == "Formula Analysis":
-st.title("Formula Analysis")
+    st.title("Formula Analysis")
 
     # 右側の入力フォーム
     Formula Analysis_text = st.text_area("分析したいExcel関数を入力し、実行ボタンを押してください。", height=200, key="proofreading_text_input")
@@ -321,7 +321,7 @@ st.title("Formula Analysis")
         communicate(initial_prompt, bot_response_placeholder, model)
 
 elif selected_option == "VBA Code Interpreter":
-st.title("VBA Code Interpreter ")
+    st.title("VBA Code Interpreter ")
 
     # 右側の入力フォーム
     VBA Code Interpreter_text = st.text_area("分析したいVBAコード、またはVBAコードで実行したい作業内容を入力し、実行ボタンを押してください。", height=200, key="VBA Code Interpreter_text_input")
@@ -340,9 +340,9 @@ st.title("VBA Code Interpreter ")
             操作1:[
             このVBAコードがどのような処理を実行しようとするものか、わかりやすく表示してください。
             ]
-            
+
             操作2:[
-            入力された作業内容を実行するため、シンプルで分かりやすいVBAコードを書き起こしてください。]       
+            入力された作業内容を実行するため、シンプルで分かりやすいVBAコードを書き起こしてください。]
             """
             f"{VBA Code Interpreter_text}を実行してください。\n"
             f"＃補足情報: {additional_info}"

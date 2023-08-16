@@ -57,7 +57,7 @@ if "user_input" not in st.session_state:
 # サイドバーで機能を選択
 selected_option = st.sidebar.selectbox(
     "機能を選択してください",
-    ["Q&A", "Translation", "Proofreading", "Formula Analysis", "VBA", "Data Analysis"],
+    ["Q&A", "Translation", "Proofreading", "Formula Analysis", "VBA Code Interpreter", "Data Analysis"],
     key="selectbox_key"  # 固定のキーを指定する
 )
 
@@ -81,7 +81,7 @@ elif selected_option == "Proofreading":
 elif selected_option == "Formula Analysis":
     default_temperature = 0.6
     default_top_p = 0.9
-elif selected_option == "VBA":
+elif selected_option == "VBA Code Interpreter":
     default_temperature = 0.7
     default_top_p = 0.88
 else: # "Data Analysis"
@@ -294,7 +294,7 @@ elif selected_option == "Formula Analysis":
     st.title("Formula Analysis")
 
     # 右側の入力フォーム
-    Formula Analysis_text = st.text_area("分析したいExcel関数を入力し、実行ボタンを押してください。", height=200, key="proofreading_text_input")
+    Formula_Analysis_text = st.text_area("分析したいExcel関数を入力し、実行ボタンを押してください。", height=200, key="proofreading_text_input")
 
     # 追加：補足情報の入力フィールド
     additional_info = st.text_area("補足情報を入力してください。", "", key="additional_info")
@@ -302,7 +302,7 @@ elif selected_option == "Formula Analysis":
     # Create a placeholder for the bot's responses
     bot_response_placeholder = st.empty()
 
-    if st.button("実行", key="send_button_Formula Analysis"):
+    if st.button("実行", key="send_button_Formula_Analysis"):
         initial_prompt = (
             """あなたは金融・投資・経済情報の分析を行うスペシャリストで、Microsoft Excelのエキスパートです。
             あなたの役割は、情報分析のために作成された過去の複雑なExcel関数を分析し、わかりやすく説明することです。
@@ -314,7 +314,7 @@ elif selected_option == "Formula Analysis":
             操作2:[
             操作1を行った後にこのExcel関数がどのような処理を行おうとしているものか解説し、よりシンプルで分かりやすい関数に書き換えが可能であれば、その提案をしてください。]
             """
-            f"{Formula Analysis_text}を分析してください。\n"
+            f"{Formula_Analysis_text}を分析してください。\n"
             f"＃補足情報: {additional_info}"
         )
         st.session_state["user_input"] = initial_prompt
@@ -324,7 +324,7 @@ elif selected_option == "VBA Code Interpreter":
     st.title("VBA Code Interpreter ")
 
     # 右側の入力フォーム
-    VBA Code Interpreter_text = st.text_area("分析したいVBAコード、またはVBAコードで実行したい作業内容を入力し、実行ボタンを押してください。", height=200, key="VBA Code Interpreter_text_input")
+    VBA_text = st.text_area("分析したいVBAコード、またはVBAコードで実行したい作業内容を入力し、実行ボタンを押してください。", height=200, key="VBA Code Interpreter_text_input")
 
     # 追加：補足情報の入力フィールド
     additional_info = st.text_area("補足情報を入力してください。", "", key="additional_info")
@@ -332,7 +332,7 @@ elif selected_option == "VBA Code Interpreter":
     # Create a placeholder for the bot's responses
     bot_response_placeholder = st.empty()
 
-    if st.button("実行", key="send_button_VBA Code Interpreter"):
+    if st.button("実行", key="send_button_VBA_Code_Interpreter"):
         initial_prompt = (
             """あなたは金融・投資・経済情報の分析を行うスペシャリストで、Microsoft Excelのエキスパートです。
             あなたの役割は、一つ目は情報分析のために作成された過去の複雑なVBAコードを分析し、わかりやすく説明すること、二つ目は実行したい作業内容をVBAコードに書き起こすです。
@@ -344,7 +344,7 @@ elif selected_option == "VBA Code Interpreter":
             操作2:[
             入力された作業内容を実行するため、シンプルで分かりやすいVBAコードを書き起こしてください。]
             """
-            f"{VBA Code Interpreter_text}を実行してください。\n"
+            f"{VBA_text}を実行してください。\n"
             f"＃補足情報: {additional_info}"
         )
         st.session_state["user_input"] = initial_prompt
